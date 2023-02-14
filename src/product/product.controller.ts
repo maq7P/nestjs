@@ -4,20 +4,19 @@ import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post } from '@ne
 
 @Controller('product')
 export class ProductController {
+	@Post('create')
+	async create(@Body() dto: Omit<ProductModel, '_id'>) {}
 
-  @Post('create')
-  async create(@Body() dto: Omit<ProductModel, '_id'>){}
+	@Get(':id')
+	async get(@Param() id: string) {}
 
-  @Get(':id')
-  async get(@Param() id: string){}
+	@Patch(':id')
+	async update(@Param() id: string, @Body() dto: ProductModel) {}
 
-  @Patch(':id')
-  async update(@Param() id: string, @Body() dto: ProductModel){}
+	@Delete(':id')
+	async delete(@Param() id: string) {}
 
-  @Delete(':id')
-  async delete(@Param() id: string){}
-
-  @HttpCode(200)
-  @Post()
-  async find(@Body() dto: FindProductDto){}
+	@HttpCode(200)
+	@Post()
+	async find(@Body() dto: FindProductDto) {}
 }
